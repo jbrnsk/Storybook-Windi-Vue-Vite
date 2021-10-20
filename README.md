@@ -2,6 +2,33 @@
 
 A demo app to troubleshoot the issue in [this](https://github.com/windicss/windicss/issues/480) conversation on the WindiCSS repo.
 
+**SOLVED**
+
+I tried with and without an extract.include like so:
+
+```js
+ extract: {
+    include: [ 'src/**/*.{vue,html,js,ts}')],
+  },
+```
+
+It needed to be this:
+
+```js
+const { dirname, join, resolve } = require('path');
+
+const basePath = dirname(resolve(__dirname));
+
+....
+
+ extract: {
+    exclude: [join(basePath, '**/node_modules/**/*')],
+    include: [join(basePath, '**/src/**/*.{vue,html,js,ts}')],
+  },
+```
+
+See referenced discussion for more info.
+
 ## Install and Run Storybook
 
 `pnpm install`
