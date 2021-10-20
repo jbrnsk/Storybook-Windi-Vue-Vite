@@ -27,6 +27,19 @@ const basePath = dirname(resolve(__dirname));
   },
 ```
 
+**EVEN BETTER SOLUTION**
+
+You can just specify the root directory when adding the WindiCSS plugin to your storybook main.js, and then you don't need a workaround in the `windi.config` file. Like so:
+
+```js
+ config.plugins.push(
+   WindiCSS({
+     config: join(__dirname, '..', 'windi.config.ts'),
+     root: dirname(__dirname),
+   })
+ );
+```
+
 See referenced discussion for more info.
 
 ## Install and Run Storybook
